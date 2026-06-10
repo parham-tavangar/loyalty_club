@@ -31,6 +31,7 @@ class UsersListService
         $currentTier = $this->tierModel->getTiersByPoint($userId);
 
 
+
         return [
             'user' => $user,
             'currentPoint' => $currentPoints,

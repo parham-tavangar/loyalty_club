@@ -178,58 +178,57 @@
 
                 <!-- بدنه جدول -->
                 <tbody class="divide-y divide-border">
-                    <!-- ردیف نمونه 1 -->
-                    <tr class="hover:bg-bg/40 transition-colors group">
-                        <td
-                            class="px-5 py-4 text-sm font-bold text-ink whitespace-nowrap">
-                            #1024
-                        </td>
-                        <td
-                            class="px-5 py-4 text-sm font-bold text-ink whitespace-nowrap">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-coral-100 text-coral-600 flex items-center justify-center font-bold text-xs">
-                                    ع‌ر
+                        <!-- ردیف نمونه 1 -->
+                        <tr class="hover:bg-bg/40 transition-colors group">
+                            <td
+                                class="px-5 py-4 text-sm font-bold text-ink whitespace-nowrap">
+                                #1024
+                            </td>
+                            <td
+                                class="px-5 py-4 text-sm font-bold text-ink whitespace-nowrap">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-coral-100 text-coral-600 flex items-center justify-center font-bold text-xs">
+                                        ع‌ر
+                                    </div>
+                                    علی رضایی
                                 </div>
-                                علی رضایی
-                            </div>
-                        </td>
-                        <td
-                            class="px-5 py-4 text-sm text-muted font-medium whitespace-nowrap"
-                            dir="ltr">
-                            0912 345 6789
-                        </td>
-                        <td
-                            class="px-5 py-4 text-sm font-bold text-indigo-500 whitespace-nowrap">
-                            1,250
-                        </td>
-                        <td class="px-5 py-4 text-sm text-ink whitespace-nowrap">
-                            <span
-                                class="bg-warning/20 text-warning px-2.5 py-1 rounded-lg text-xs font-bold">طلایی</span>
-                            <span class="text-xs text-muted mr-1">(3)</span>
-                        </td>
-                        <td class="px-5 py-4 whitespace-nowrap">
-                            <span
-                                class="text-xs font-bold text-muted bg-bg px-2.5 py-1 rounded-lg border border-border">کاربر عادی</span>
-                        </td>
-                        <td class="px-5 py-4 whitespace-nowrap">
-                            <span
-                                class="inline-flex items-center gap-1.5 bg-success/10 text-success px-2.5 py-1 rounded-lg text-xs font-bold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-success"></span>
-                                فعال
-                            </span>
-                        </td>
-                        <td class="px-5 py-4 text-xs text-muted whitespace-nowrap">
-                            1375/08/12
-                        </td>
-                        <td class="px-5 py-4 text-xs text-muted whitespace-nowrap">
-                            1403/01/15
-                        </td>
-                        <td class="px-5 py-4 text-xs text-muted whitespace-nowrap">
-                            2 ساعت پیش
-                        </td>
-                    </tr>
-
+                            </td>
+                            <td
+                                class="px-5 py-4 text-sm text-muted font-medium whitespace-nowrap"
+                                dir="ltr">
+                                0912 345 6789
+                            </td>
+                            <td
+                                class="px-5 py-4 text-sm font-bold text-indigo-500 whitespace-nowrap">
+                                1,250
+                            </td>
+                            <td class="px-5 py-4 text-sm text-ink whitespace-nowrap">
+                                <span
+                                    class="bg-warning/20 text-warning px-2.5 py-1 rounded-lg text-xs font-bold">طلایی</span>
+                                <span class="text-xs text-muted mr-1">(3)</span>
+                            </td>
+                            <td class="px-5 py-4 whitespace-nowrap">
+                                <span
+                                    class="text-xs font-bold text-muted bg-bg px-2.5 py-1 rounded-lg border border-border">کاربر عادی</span>
+                            </td>
+                            <td class="px-5 py-4 whitespace-nowrap">
+                                <span
+                                    class="inline-flex items-center gap-1.5 bg-success/10 text-success px-2.5 py-1 rounded-lg text-xs font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-success"></span>
+                                    فعال
+                                </span>
+                            </td>
+                            <td class="px-5 py-4 text-xs text-muted whitespace-nowrap">
+                                1375/08/12
+                            </td>
+                            <td class="px-5 py-4 text-xs text-muted whitespace-nowrap">
+                                1403/01/15
+                            </td>
+                            <td class="px-5 py-4 text-xs text-muted whitespace-nowrap">
+                                2 ساعت پیش
+                            </td>
+                        </tr>
                     <!-- ردیف نمونه 2 -->
                     <tr class="hover:bg-bg/40 transition-colors group">
                         <td
