@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود به پنل مدیریت</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="<?= URL_ROOT ?>public/asset/css/main.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        coral: {
+                            400: '#F07A65',
+                            500: '#E85B44', // رنگ اصلی سیستم شما
+                            600: '#D14833',
+                        },
+                        ink: '#1A1D1F',
+                        muted: '#6F767E',
+                        surface: '#FCFCFC',
+                    },
+                    boxShadow: {
+                        'glow-coral': '0 8px 16px -4px rgba(232, 91, 68, 0.4)',
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Vazirmatn';
+            /* مسیر فایل فونت خود را در اینجا قرار دهید */
+            src: url('<?= URL_ROOT ?>public/asset/fonts/Vazirmatn-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* در صورت نیاز به وزن‌های دیگر (مثل ضخیم): */
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('<?= URL_ROOT ?>public/asset/fonts/Vazirmatn-Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-ink font-sans min-h-screen flex items-center justify-center p-4 lg:p-8">
+
+    <!-- کانتینر اصلی صفحه لاگین -->
+    <div class="bg-surface w-full max-w-5xl rounded-[2rem] shadow-2xl flex flex-col lg:flex-row overflow-hidden min-h-[600px] border border-white">
+
+        <!-- بخش فرم لاگین (سمت راست) -->
+        <div class="w-full lg:w-1/2 flex flex-col justify-center p-8 lg:p-14 xl:p-20 relative z-10">
+
+            <!-- لوگو یا آیکون بالای فرم -->
+            <div class="w-14 h-14 bg-coral-50 rounded-2xl flex items-center justify-center mb-8">
+                <svg class="w-8 h-8 text-coral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+            </div>
+
+            <h1 class="text-3xl font-black text-ink mb-2">ورود به مدیریت</h1>
+            <p class="text-sm font-medium text-muted mb-10">لطفاً برای ورود به داشبورد، اطلاعات خود را وارد کنید.</p>
+
+            <form action="<?= URL_ROOT ?>admin-panel/users/login" method="POST" class="space-y-6">
+
+                <!-- فیلد شماره موبایل / نام کاربری -->
+                <div>
+                    <label for="username" class="block text-sm font-bold text-ink mb-2">شماره موبایل</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="username" name="mobile" dir="ltr" placeholder="09123456789"
+                            class="w-full pl-4 pr-11 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-left font-medium text-ink focus:bg-white focus:border-coral-500 focus:ring-4 focus:ring-coral-500/10 transition-all outline-none" required>
+                        <?php if (isset($_SESSION['form_errors']['mobile'])): ?>
+                            <p class="text-red-500 text-sm mt-1">
+                                <?= $_SESSION['form_errors']['mobile'] ?>
+                            </p> <?php endif ?>
+                    </div>
+                </div>
+
+                <!-- فیلد رمز عبور -->
+                <div>
+                    <label for="password" class="block text-sm font-bold text-ink mb-2">رمز عبور</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </div>
+                        <input type="password" id="password" name="password" dir="ltr" placeholder="••••••••"
+                            class="w-full pl-4 pr-11 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-left font-medium text-ink focus:bg-white focus:border-coral-500 focus:ring-4 focus:ring-coral-500/10 transition-all outline-none" required>
+                        <?php if (isset($_SESSION['form_errors']['password'])): ?>
+                            <p class="text-red-500 text-sm mt-1">
+                                <?= $_SESSION['form_errors']['password'] ?>
+                            </p>
+                        <?php endif ?>
+                    </div>
+                </div>
+
+                <!-- مرا به خاطر بسپار -->
+                <div class="flex items-center justify-between mt-2">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <div class="relative flex items-center justify-center">
+                            <input type="checkbox" name="remember" class="peer sr-only">
+                            <div class="w-5 h-5 border-2 border-gray-300 rounded-md peer-checked:bg-coral-500 peer-checked:border-coral-500 transition-all"></div>
+                            <svg class="w-3 h-3 text-white absolute opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-muted group-hover:text-ink transition-colors">مرا به خاطر بسپار</span>
+                    </label>
+                </div>
+
+                <!-- دکمه ورود -->
+                <button type="submit"
+                    class="w-full py-4 mt-6 bg-gradient-to-r from-coral-500 to-coral-400 hover:from-coral-600 hover:to-coral-500 text-white rounded-2xl text-base font-bold shadow-glow-coral hover:-translate-y-0.5 transition-all duration-300">
+                    ورود به پنل
+                </button>
+                <?php if (isset($_SESSION['form_errors'])): ?>
+                    <?php unset($_SESSION['form_errors']) ?>
+                <?php endif ?>
+            </form>
+
+        </div>
+
+        <!-- بخش گرافیکی (سمت چپ - فقط در دسکتاپ نمایش داده می‌شود) -->
+        <div class="hidden lg:flex w-1/2 bg-ink relative items-center justify-center overflow-hidden">
+            <!-- افکت‌های پس زمینه -->
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/50 to-coral-900/40 z-10"></div>
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-coral-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+            <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+            <!-- محتوای روی عکس -->
+            <div class="relative z-20 text-center px-12">
+                <div class="glass-effect bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl shadow-2xl">
+                    <h2 class="text-3xl font-black text-white mb-4 leading-tight">مدیریت هوشمند<br>باشگاه مشتریان</h2>
+                    <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                        به پنل مدیریت یکپارچه خوش آمدید. از طریق این پنل می‌توانید کاربران، امتیازات و روند رشد کسب‌وکار خود را به سادگی مدیریت کنید.
+                    </p>
+
+                    <!-- المان تزئینی آماری (شبیه داشبورد) -->
+                    <div class="mt-8 flex items-center justify-center gap-4">
+                        <div class="bg-white/10 rounded-2xl p-4 border border-white/10 backdrop-blur-md">
+                            <span class="block text-xs text-gray-400 font-bold mb-1">سیستم امن</span>
+                            <span class="text-white font-black">رمزنگاری پیشرفته</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+
+<script>
+    alertify.set('notifier', 'position', 'top-right');
+
+    <?php if (isset($_SESSION['success'])): ?>
+        alertify.success("<?= $_SESSION['success'] ?>");
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['error'])): ?>
+        alertify.error("<?= $_SESSION['error'] ?>");
+        <?php unset($_SESSION['error']); ?>
+    <?php endif; ?>
+</script>
+
+</html>

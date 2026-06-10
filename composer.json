@@ -1,0 +1,12 @@
+{
+    "name": "parham/loyalty_club",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        },
+        "files": ["app/helper.php"]
+    },
+    "require": {
+        "morilog/jalali": "^3.5"
+    }
+}

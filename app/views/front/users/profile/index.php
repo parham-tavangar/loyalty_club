@@ -1,0 +1,195 @@
+<body class="bg-bg text-ink font-sans antialiased min-h-screen pb-16 overflow-x-hidden">
+
+    <!-- Container with mt-12 -->
+    <div class="container mx-auto px-4 mt-12 max-w-4xl relative">
+
+        <!-- Decorative Background Blurs -->
+        <div
+            class="absolute top-10 -right-10 w-48 h-48 bg-coral-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse">
+        </div>
+        <div
+            class="absolute bottom-10 -left-10 w-56 h-56 bg-coral-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse delay-75">
+        </div>
+
+        <!-- Main Card -->
+        <div class="relative bg-surface rounded-[2.5rem] shadow-xl border border-border overflow-hidden">
+
+            <!-- Elegant Header Background -->
+            <div class="bg-ink h-40 relative overflow-hidden">
+                <!-- Subtle pattern/glow inside header -->
+                <div class="absolute inset-0 opacity-20"
+                    style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;">
+                </div>
+                <div
+                    class="absolute -top-24 -right-24 w-64 h-64 bg-coral-500 rounded-full filter blur-[80px] opacity-40">
+                </div>
+            </div>
+
+            <!-- Overlapping Avatar Section -->
+            <div class="relative flex justify-center -mt-20 mb-6">
+                <div class="relative group">
+                    <div class="w-36 h-36 rounded-full bg-surface p-2 shadow-2xl relative z-10">
+                        <div
+                            class="w-full h-full rounded-full bg-bg border border-border flex items-center justify-center overflow-hidden">
+                            <!-- User SVG -->
+                            <svg class="w-16 h-16 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- Edit Avatar Badge -->
+                    <a href="<?= URL_ROOT ?>"
+                        class="absolute bottom-2 left-2 bg-coral-500 text-white p-2.5 rounded-full shadow-lg border-2 border-surface hover:bg-coral-400 transition-colors z-20">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="text-center px-6 mb-10">
+                <h1 class="text-2xl font-bold text-ink">پروفایل من</h1>
+                <p class="text-muted text-sm mt-2">اطلاعات حساب کاربری خود را مدیریت کنید</p>
+            </div>
+
+            <!-- Form -->
+            <form action="<?= URL_ROOT ?>users/profile/edit" method="POST" class="px-6 md:px-12 pb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+
+                    <!-- Full Name -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-ink mb-2" for="full_name">نام و نام
+                            خانوادگی</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </div>
+                            <input value="<?= $user->name ?>" type="text" id="full_name" name="name"
+                                class="block w-full pr-12 pl-4 py-3.5 rounded-2xl bg-bg border border-border focus:border-coral-400 focus:ring-4 focus:ring-coral-100 text-ink outline-none transition-all text-sm font-medium">
+                            <div>
+                                <?php if (isset($_SESSION['form_errors']['name'])): ?>
+                                    <p class="text-red-500 text-sm mt-1">
+                                        <?= $_SESSION['form_errors']['name'] ?>
+                                    </p>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div>
+                        <label class="block text-sm font-semibold text-ink mb-2" for="mobile">شماره موبایل</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <input type="tel" id="mobile" name="mobile" value="<?= $user->mobile ?>" dir="ltr"
+                                class="block w-full pr-12 pl-4 py-3.5 rounded-2xl bg-bg border border-border focus:border-coral-400 focus:ring-4 focus:ring-coral-100 text-ink text-left outline-none transition-all text-sm font-medium tracking-wider">
+                            <div>
+                                <?php if (isset($_SESSION['form_errors']['mobile'])): ?>
+                                    <p class="text-red-500 text-sm mt-1">
+                                        <?= $_SESSION['form_errors']['mobile'] ?>
+                                    </p>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Birthday -->
+                    <div>
+                        <label class="block text-sm font-semibold text-ink mb-2" for="birthday">تاریخ تولد</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <!-- Type can be 'date' or 'text' depending on your DatePicker plugin. Using text with placeholder for Jalali view -->
+                            <input type="text" id="birthday" name="birthday"
+                                value="<?= str_replace('-', '/', $user->birthday) ?>" dir="ltr"
+                                class="block w-full pr-12 pl-4 py-3.5 rounded-2xl bg-bg border border-border focus:border-coral-400 focus:ring-4 focus:ring-coral-100 text-ink text-left outline-none transition-all text-sm font-medium">
+                            <div>
+                                <?php if (isset($_SESSION['form_errors']['birthday'])): ?>
+                                    <p class="text-red-500 text-sm mt-1">
+                                        <?= $_SESSION['form_errors']['birthday'] ?>
+                                    </p>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label class="block text-sm font-semibold text-ink mb-2" for="password">رمز عبور جدید</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </div>
+                            <input type="password" id="password" name="password" placeholder="********" dir="ltr"
+                                class="block w-full pr-12 pl-4 py-3.5 rounded-2xl bg-bg border border-border focus:border-coral-400 focus:ring-4 focus:ring-coral-100 text-ink text-left outline-none transition-all text-sm font-medium placeholder-muted">
+                            <div>
+                                <?php if (isset($_SESSION['form_errors']['password'])): ?>
+                                    <p class="text-red-500 text-sm mt-1">
+                                        <?= $_SESSION['form_errors']['password'] ?>
+                                    </p>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div>
+                        <label class="block text-sm font-semibold text-ink mb-2" for="password_confirmation">تکرار رمز
+                            عبور</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                placeholder="********" dir="ltr"
+                                class="block w-full pr-12 pl-4 py-3.5 rounded-2xl bg-bg border border-border focus:border-coral-400 focus:ring-4 focus:ring-coral-100 text-ink text-left outline-none transition-all text-sm font-medium placeholder-muted">
+                            <div>
+                                <?php if (isset($_SESSION['form_errors']['password_confirmation'])): ?>
+                                    <p class="text-red-500 text-sm mt-1">
+                                        <?= $_SESSION['form_errors']['password_confirmation'] ?>
+                                    </p>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mt-10 flex justify-center">
+                    <button type="submit"
+                        class="w-full md:w-auto bg-gradient-to-r from-coral-400 to-coral-500 text-white font-bold text-base py-3.5 px-12 rounded-2xl shadow-[0_8px_20px_rgba(232,91,68,0.3)] hover:shadow-[0_12px_25px_rgba(232,91,68,0.4)] hover:-translate-y-1 transition-all duration-300">
+                        ذخیره تغییرات
+                    </button>
+                </div>
+                <?php if (isset($_SESSION['form_errors'])): ?>
+                    <?php unset($_SESSION['form_errors']) ?>
+                <?php endif ?>
+            </form>
+
+        </div>
+    </div>
+
+</body>
