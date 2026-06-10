@@ -106,7 +106,8 @@
         }
     </style>
 </head>
-<main class="flex-1 flex flex-col h-screen overflow-x-hidden">
+<body class="bg-bg text-ink" x-data="{ sidebarOpen: false }">
+    <div class="min-h-screen flex flex-col">
 
     <!-- هدر بالایی (Top Header) - با افکت شیشه ای مدرن -->
     <header class="h-20 lg:h-24 glass-effect border-b border-white/60 flex items-center justify-between px-4 lg:px-10 z-30 sticky top-0">
@@ -146,3 +147,5 @@
             </div>
         </div>
     </header>
+
+    <div class="flex flex-1">
