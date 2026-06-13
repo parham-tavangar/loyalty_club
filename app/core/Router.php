@@ -13,6 +13,7 @@ $routes = [
         "admin-panel/users/login-form" => ['controller' => 'app\controllers\admin\AdminUserController', 'method' => 'loginForm'],
         "admin-panel/user_management/users_list" => ['controller' => 'app\controllers\admin\AdminUsersListController', 'method' => 'index'],
         "admin-panel/user_management/users_list/search" => ['controller' => 'app\controllers\admin\AdminUsersListController', 'method' => 'search'],
+        "admin-panel/user_management/create_user" => ['controller' => 'app\controllers\admin\AdminCreateUsers', 'method' => 'create'],
 
 
 
@@ -24,5 +25,8 @@ $routes = [
         "users/profile/edit" => ['controller' => 'app\controllers\front\UserProfileController', 'method' => 'edit'],
         "users/logout" => ['controller' => 'app\controllers\front\UserController', 'method' => 'logOut'],
         "claim-birthday-bonus" => ['controller' => 'app\controllers\front\HomeController', 'method' => 'claimBirthdayBonus'],
+        "admin-panel/user_management/store" => ['controller' => 'app\controllers\admin\AdminCreateUsers', 'method' => 'store'],
+
+
     ]
 ];

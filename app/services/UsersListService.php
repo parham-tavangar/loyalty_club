@@ -6,6 +6,7 @@ use app\models\LoyalPoints;
 use app\models\Tiers;
 use app\models\User;
 use Exception;
+use PDOException;
 
 class UsersListService
 {

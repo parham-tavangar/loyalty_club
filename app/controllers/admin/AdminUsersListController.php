@@ -8,6 +8,12 @@ use Exception;
 
 class AdminUsersListController
 {
+    private $userListService;
+
+    public function __construct()
+    {
+        $this->userListService = new UsersListService();
+    }
     public function index()
     {
         if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
@@ -24,5 +30,4 @@ class AdminUsersListController
             redirect("admin-panel/users/login-form", ['error' => "در ابتدا وارد سیستم شوید"]);
         }
     }
- 
 }

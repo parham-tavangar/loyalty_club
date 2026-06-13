@@ -25,6 +25,7 @@ class UserService
         $password_confirmation = trim($data['password_confirmation']);
         $birthday = trim($data['birthday']);
         $birthday = str_replace('/', '-', $birthday);
+        $role = "user";
 
 
         $errors = [];
@@ -63,7 +64,7 @@ class UserService
 
         try {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $this->model->createUser($name, $mobile, $hashedPassword, $birthday);
+            $this->model->createUser($name, $mobile, $hashedPassword, $birthday, $role);
 
             $user = $this->model->getUserByMobile($mobile);
             $user_id = $user->id;
@@ -136,11 +137,8 @@ class UserService
         } else {
             return ['status' => 'invalid_credentials'];
         }
-
-
-        
     }
-    
+
     public function processLogOut()
     {
         $_SESSION = [];

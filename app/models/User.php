@@ -63,10 +63,10 @@ class User
         $stmt->execute(['id' => $id, 'name' => $name, 'password' => $password, 'birthday' => $birthday, 'mobile' => $mobile]);
     }
 
-    public function createUser($name, $mobile, $password, $birthday)
+    public function createUser($name, $mobile, $password, $birthday, $role)
     {
-        $stmt = $this->db->prepare("INSERT INTO {$this->table} (name, mobile, password, birthday) VALUES (:name, :mobile, :password, :birthday)");
-        $stmt->execute(['name' => $name, 'mobile' => $mobile, 'password' => $password, 'birthday' => $birthday]);
+        $stmt = $this->db->prepare("INSERT INTO {$this->table} (name, mobile, password, birthday, role) VALUES (:name, :mobile, :password, :birthday, :role)");
+        $stmt->execute(['name' => $name, 'mobile' => $mobile, 'password' => $password, 'birthday' => $birthday, 'role' => $role]);
     }
     public function updateTierId($userId, $newTierId)
     {
@@ -118,5 +118,4 @@ class User
 
         return $stmt->fetchColumn(); // فقط عدد تعداد کاربران را برمی‌گرداند
     }
-
 }

@@ -118,7 +118,7 @@
                   <div class="lg:col-span-2 bg-surface p-6 lg:p-8 rounded-3xl border border-white shadow-soft">
                       <div class="flex justify-between items-center mb-8">
                           <div>
-                              <h3 class="font-black text-xl text-ink">روند کسب و مصرف امتیاز</h3>
+                              <h3 class="font-black text-xl text-ink">روند کسب امتیاز</h3>
                               <p class="text-sm text-muted font-medium mt-1">گزارش آماری ماهانه</p>
                           </div>
                           <!-- <button

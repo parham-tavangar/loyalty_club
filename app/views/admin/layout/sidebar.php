@@ -48,12 +48,19 @@
         </a>
 
         <!-- عنوان 2: مدیریت کاربران -->
-        <?php $active = getSidebarStatus('admin-panel/user_management')['isActive']; ?>
-        <div x-data="{ open: <?= $active ? 'true' : 'false' ?> }">
+        <?php
+        // اصلاح منطق باز ماندن منوی مادر: 
+        // اگر در صفحه مدیریت کاربران یا زیرمجموعه‌های آن (مثل ایجاد کاربر) بودیم، منو باز بماند.
+        $isUserMgmtParentActive = getSidebarStatus('admin-panel/user_management')['isActive'] ||
+            getSidebarStatus('admin-panel/user_management/create_user')['isActive'] ||
+            getSidebarStatus('admin-panel/user_management/users_list')['isActive'];
+        ?>
+
+        <div x-data="{ open: <?= $isUserMgmtParentActive ? 'true' : 'false' ?> }">
             <button @click="open = !open"
-                class="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all duration-200 group <?= $active ? 'bg-gradient-to-r from-coral-500 to-coral-400 text-white shadow-glow-coral' : 'hover:bg-indigo-50 text-muted hover:text-indigo-600' ?>">
+                class="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl transition-all duration-200 group <?= $isUserMgmtParentActive ? 'bg-gradient-to-r from-coral-500 to-coral-400 text-white shadow-glow-coral' : 'hover:bg-indigo-50 text-muted hover:text-indigo-600' ?>">
                 <div class="flex items-center gap-3">
-                    <svg class="w-5 h-5 transition-colors <?= $active ? '' : 'group-hover:text-indigo-500' ?>"
+                    <svg class="w-5 h-5 transition-colors <?= $isUserMgmtParentActive ? '' : 'group-hover:text-indigo-500' ?>"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
@@ -62,20 +69,27 @@
                     <span class="font-semibold">مدیریت کاربران</span>
                 </div>
                 <svg :class="open ? 'rotate-180' : ''"
-                    class="w-4 h-4 transition-transform <?= $active ? '' : 'text-muted group-hover:text-indigo-500' ?>"
+                    class="w-4 h-4 transition-transform <?= $isUserMgmtParentActive ? '' : 'text-muted group-hover:text-indigo-500' ?>"
                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
             </button>
-            <div x-show="open" x-collapse class="pl-4 pr-11 mt-1 space-y-1">
-                <?php $sub = getSidebarStatus('admin-panel/user_management/users_list')['isActive']; ?>
-                <a href="<?= URL_ROOT ?>admin-panel/user_management/users_list"
-                    class="block py-2 text-sm font-medium transition-colors relative before:content-[''] before:absolute before:right-[-16px] before:top-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:transition-all <?= $sub ? 'text-indigo-600 before:bg-indigo-500 before:scale-150' : 'text-muted hover:text-indigo-600 before:bg-border hover:before:bg-indigo-500 hover:before:scale-150' ?>">لیست
-                    کاربران</a>
 
-                <a href="#"
-                    class="block py-2 text-sm font-medium text-muted hover:text-indigo-600 transition-colors relative before:content-[''] before:absolute before:right-[-16px] before:top-1/2 before:w-1.5 before:h-1.5 before:bg-border before:rounded-full hover:before:bg-indigo-500 hover:before:scale-150 before:transition-all">ایجاد
-                    کاربر</a>
+            <div x-show="open" x-collapse class="pl-4 pr-11 mt-1 space-y-1">
+
+                <!-- زیرمنوی لیست کاربران -->
+                <?php $subList = getSidebarStatus('admin-panel/user_management/users_list')['isActive']; ?>
+                <a href="<?= URL_ROOT ?>admin-panel/user_management/users_list"
+                    class="block py-2 text-sm font-medium transition-colors relative before:content-[''] before:absolute before:right-[-16px] before:top-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:transition-all <?= $subList ? 'text-indigo-600 before:bg-indigo-500 before:scale-150' : 'text-muted hover:text-indigo-600 before:bg-border hover:before:bg-indigo-500 hover:before:scale-150' ?>">
+                    لیست کاربران
+                </a>
+
+                <!-- زیرمنوی ایجاد کاربر (اصلاح شده با آیکون و وضعیت فعال) -->
+                <?php $subCreate = getSidebarStatus('admin-panel/user_management/create_user')['isActive']; ?>
+                <a href="<?= URL_ROOT ?>admin-panel/user_management/create_user"
+                    class="block py-2 text-sm font-medium transition-colors relative before:content-[''] before:absolute before:right-[-16px] before:top-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:transition-all <?= $subCreate ? 'text-indigo-600 before:bg-indigo-500 before:scale-150' : 'text-muted hover:text-indigo-600 before:bg-border hover:before:bg-indigo-500 hover:before:scale-150' ?>">
+                    ایجاد کاربر
+                </a>
             </div>
         </div>
 

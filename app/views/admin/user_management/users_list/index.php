@@ -7,7 +7,7 @@
                 مدیریت، جستجو و فیلتر کاربران سیستم
             </p>
         </div>
-        <a href="#"
+        <a href="<?= URL_ROOT ?>admin-panel/user_management/create_user"
             class="inline-flex items-center gap-2 bg-coral-500 hover:bg-coral-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-glow-coral transition-all transform hover:-translate-y-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" class="w-5 h-5">
