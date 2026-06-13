@@ -16,12 +16,13 @@ class AdminUsersListController
         $userId = $_SESSION['user_id'];
 
         try {
-            $homeService = new UsersListService();
-            $data = $homeService->getUsersListData($userId);
+            $UsersListService = new UsersListService();
+            $data = $UsersListService->getUsersListData($userId);
             $viewer = new AdminViewer();
             $viewer->render("user_management/users_list/index.php", $data);
         } catch (Exception $ex) {
             redirect("admin-panel/users/login-form", ['error' => "در ابتدا وارد سیستم شوید"]);
         }
     }
+ 
 }

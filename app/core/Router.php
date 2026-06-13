@@ -12,6 +12,8 @@ $routes = [
         "admin-panel" => ['controller' => 'app\controllers\admin\AdminHomeController', 'method' => 'index'],
         "admin-panel/users/login-form" => ['controller' => 'app\controllers\admin\AdminUserController', 'method' => 'loginForm'],
         "admin-panel/user_management/users_list" => ['controller' => 'app\controllers\admin\AdminUsersListController', 'method' => 'index'],
+        "admin-panel/user_management/users_list/search" => ['controller' => 'app\controllers\admin\AdminUsersListController', 'method' => 'search'],
+
 
 
     ],

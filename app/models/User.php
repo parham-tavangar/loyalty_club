@@ -18,6 +18,32 @@ class User
         $stmt = $this->db->query("SELECT * FROM {$this->table}");
         return $stmt->fetchALL(PDO::FETCH_OBJ);
     }
+
+    public function getAllUsersWithDetails($limit, $offset)
+    {
+        $stmt = $this->db->prepare("
+        SELECT users.*, loyalty_points.points AS total_points, tiers.name AS tier_name 
+        FROM {$this->table} 
+        LEFT JOIN loyalty_points ON users.id = loyalty_points.user_id 
+        LEFT JOIN tiers ON users.tier_id = tiers.id
+        ORDER BY users.id DESC
+        LIMIT :limit OFFSET :offset
+    ");
+
+        // در PDO برای LIMIT و OFFSET باید نوع داده را مشخص کنیم
+        $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+
+    public function countAllUsers()
+    {
+        return $this->db->query("SELECT COUNT(*) FROM users")->fetchColumn();
+    }
+
     public function getUserByMobile($mobile)
     {
         $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE mobile = :mobile");
@@ -64,14 +90,14 @@ class User
         if ($startDate && $endDate) {
             $sql .= " AND created_at BETWEEN :start_date AND :end_date";
             $params[':start_date'] = $startDate;
-            $params[':end_date']   = $endDate;
+            $params[':end_date'] = $endDate;
         }
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute($params);
         $result = $stmt->fetch(PDO::FETCH_OBJ);
 
-        return $result->total_deducted ? abs((int)$result->total_deducted) : 0;
+        return $result->total_deducted ? abs((int) $result->total_deducted) : 0;
     }
 
 
@@ -92,4 +118,5 @@ class User
 
         return $stmt->fetchColumn(); // فقط عدد تعداد کاربران را برمی‌گرداند
     }
+
 }

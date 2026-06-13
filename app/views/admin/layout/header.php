@@ -106,46 +106,58 @@
         }
     </style>
 </head>
+
 <body class="bg-bg text-ink" x-data="{ sidebarOpen: false }">
     <div class="min-h-screen flex flex-col">
 
-    <!-- هدر بالایی (Top Header) - با افکت شیشه ای مدرن -->
-    <header class="h-20 lg:h-24 glass-effect border-b border-white/60 flex items-center justify-between px-4 lg:px-10 z-30 sticky top-0">
-        <!-- موبایل تاگل + مسیر جاری -->
-        <div class="flex items-center gap-4">
-            <button @click="sidebarOpen = true" class="lg:hidden p-2.5 bg-white rounded-xl shadow-sm border border-gray-100 text-muted hover:text-coral-500 transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-            <div class="hidden sm:flex flex-col">
-                <h2 class="text-2xl font-black text-ink tracking-tight">داشبورد مدیریت</h2>
-                <p class="text-sm font-medium text-muted mt-0.5">خلاصه وضعیت امروز باشگاه مشتریان</p>
-            </div>
-        </div>
-
-        <!-- اطلاعات کاربر سمت چپ هدر -->
-        <div class="flex items-center gap-4 lg:gap-6">
-            <!-- دکمه اعلان ها (آیکون زنگوله) -->
-            <button class="relative p-3 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md text-muted hover:text-indigo-500 transition-all">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                </svg>
-                <span class="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-coral-500 rounded-full ring-4 ring-white animate-pulse"></span>
-            </button>
-
-            <!-- باکس اطلاعات کاربر -->
-            <div class="flex items-center gap-3 p-1.5 pr-4 bg-white border border-gray-100 shadow-sm rounded-full hover:shadow-md hover:border-coral-200 transition-all cursor-pointer">
-                <div class="hidden sm:flex flex-col text-left mr-2">
-                    <div class="flex items-center justify-end gap-2">
-                        <span class="text-sm font-extrabold text-ink"><?= $user->name ?? 'کاربر' ?></span>
-                        <span class="px-2 py-0.5 text-[10px] font-bold bg-coral-50 text-coral-500 rounded-md"><?= $user->role ?? 'مدیر' ?></span>
-                    </div>
-                    <span class="text-[11px] font-medium text-muted text-right tracking-widest mt-0.5"><?= $user->mobile ?? '09120000000' ?></span>
+        <!-- هدر بالایی (Top Header) - با افکت شیشه ای مدرن -->
+        <header
+            class="h-20 lg:h-24 glass-effect border-b border-white/60 flex items-center justify-between px-4 lg:px-10 z-30 sticky top-0">
+            <!-- موبایل تاگل + مسیر جاری -->
+            <div class="flex items-center gap-4">
+                <button @click="sidebarOpen = true"
+                    class="lg:hidden p-2.5 bg-white rounded-xl shadow-sm border border-gray-100 text-muted hover:text-coral-500 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div class="hidden sm:flex flex-col">
+                    <h2 class="text-2xl font-black text-ink tracking-tight">داشبورد مدیریت</h2>
+                    <p class="text-sm font-medium text-muted mt-0.5">خلاصه وضعیت امروز باشگاه مشتریان</p>
                 </div>
-                <img src="https://ui-avatars.com/api/?name=User&background=E85B44&color=fff&font-size=0.33" alt="پروفایل" class="w-11 h-11 rounded-full shadow-sm border-2 border-white">
             </div>
-        </div>
-    </header>
 
-    <div class="flex flex-1">
+            <!-- اطلاعات کاربر سمت چپ هدر -->
+            <div class="flex items-center gap-4 lg:gap-6">
+                <!-- دکمه اعلان ها (آیکون زنگوله) -->
+                <!-- <button
+                    class="relative p-3 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md text-muted hover:text-indigo-500 transition-all">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                    <span
+                        class="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-coral-500 rounded-full ring-4 ring-white animate-pulse"></span>
+                </button> -->
+
+                <!-- باکس اطلاعات کاربر -->
+                <div
+                    class="flex items-center gap-3 p-1.5 pr-4 bg-white border border-gray-100 shadow-sm rounded-full hover:shadow-md hover:border-coral-200 transition-all cursor-pointer">
+                    <div class="hidden sm:flex flex-col text-left mr-2">
+                        <div class="flex items-center justify-end gap-2">
+                            <span class="text-sm font-extrabold text-ink"><?= $user->name ?? 'کاربر' ?></span>
+                            <span
+                                class="px-2 py-0.5 text-[10px] font-bold bg-coral-50 text-coral-500 rounded-md"><?= $user->role ?? 'مدیر' ?></span>
+                        </div>
+                        <span
+                            class="text-[11px] font-medium text-muted text-right tracking-widest mt-0.5"><?= $user->mobile ?? '09120000000' ?></span>
+                    </div>
+                    <img src="<?= URL_ROOT ?>public/asset/image/profile.png" alt="پروفایل"
+                        class="w-11 h-11 rounded-full shadow-sm border-2 border-white">
+                </div>
+            </div>
+        </header>
+
+        <div class="flex flex-1">

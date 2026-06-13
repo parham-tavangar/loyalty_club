@@ -15,6 +15,15 @@ function translatePointType($type)
         default => $type,
     };
 }
+
+function translateUserRole($role)
+{
+    return match ($role) {
+        'user' => 'کاربر عادی',
+        'admin' => 'مدیر',
+        default => $role,
+    };
+}
 function toShamsi($dateTime, $format = 'Y/m/d')
 {
     if (empty($dateTime)) {
@@ -89,4 +98,35 @@ function timeAgo($datetime)
     $englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
     return str_replace($englishDigits, $persianDigits, $resultStr);
+}
+
+function getSidebarStatus($itemPath)
+{
+    $currentUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $rootPath = defined('URL_ROOT') ? parse_url(URL_ROOT, PHP_URL_PATH) : '/';
+    $relativePath = trim(str_replace($rootPath, '', $currentUri), '/');
+    $itemPath = trim($itemPath, '/');
+
+    // منطق جدید برای تشخیص Active
+    if ($itemPath === 'admin-panel') {
+        // برای داشبورد: فقط اگر مسیر دقیقاً برابر admin-panel بود
+        $isActive = ($relativePath === $itemPath);
+    } else {
+        // برای بقیه: اگر مسیر دقیقاً برابر بود یا با آن شروع می‌شد (برای زیرمنوها)
+        $isActive = ($relativePath === $itemPath) || ($itemPath !== '' && strpos($relativePath, $itemPath) === 0);
+    }
+
+    if ($isActive) {
+        return [
+            'btn' => 'bg-gradient-to-r from-coral-500 to-coral-400 text-white shadow-glow-coral',
+            'icon' => 'text-white',
+            'isActive' => true
+        ];
+    }
+
+    return [
+        'btn' => 'text-muted hover:bg-indigo-50 hover:text-indigo-600',
+        'icon' => 'text-muted group-hover:text-indigo-500',
+        'isActive' => false
+    ];
 }
